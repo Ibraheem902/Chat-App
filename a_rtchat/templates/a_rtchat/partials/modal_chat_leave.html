@@ -1,0 +1,13 @@
+<div x-data="{modal_open: false}">
+    <div @click="modal_open = true" class="cursor-pointer text-sm text-gray-400 hover:text-red-500">Leave Chatroom</div>
+    <div x-show="modal_open" x-cloak class="fixed inset-0 bg-black/50 z-30 flex items-center justify-center">
+        <div @click.away="modal_open = false" class="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 class="text-xl font-bold mb-4">Leave this Chatroom?</h2>
+            <form method="post" action="{% url 'chatroom-leave' chat_group.group_name %}">
+                {% csrf_token %}
+                <button type="submit" class="px-4 py-2 rounded-md !bg-red-500 hover:!bg-red-800 text-white">Yes, I want to leave</button>
+                <a class="button button-gray ml-1 cursor-pointer" @click="modal_open = false">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
